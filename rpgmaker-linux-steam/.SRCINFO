@@ -1,0 +1,13 @@
+pkgbase = rpgmaker-linux-steam
+	pkgdesc = Steam compatibility tool for RPG Maker Linux (cicpoffs)
+	pkgver = 1.1.6
+	pkgrel = 1
+	url = https://github.com/bakustarver/rpgmakermlinux-cicpoffs
+	arch = any
+	license = custom
+	depends = rpgmaker-linux
+	optdepends = steam: required to use this compatibility tool
+	source = https://github.com/bakustarver/rpgmakermlinux-cicpoffs/archive/refs/tags/v1.1.6.tar.gz
+	sha256sums = SKIP
+
+pkgname = rpgmaker-linux-steam

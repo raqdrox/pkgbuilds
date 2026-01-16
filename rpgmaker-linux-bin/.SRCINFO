@@ -1,0 +1,17 @@
+pkgbase = rpgmaker-linux-bin
+	pkgdesc = RPG Maker MV/MZ Linux runtime using cicpoffs mount (binary release)
+	pkgver = 1.1.6
+	pkgrel = 1
+	url = https://github.com/bakustarver/rpgmakermlinux-cicpoffs
+	arch = x86_64
+	arch = aarch64
+	arch = armv7h
+	license = custom
+	depends = bash
+	depends = fuse2
+	provides = rpgmaker-linux
+	conflicts = rpgmaker-linux-git
+	source = https://github.com/bakustarver/rpgmakermlinux-cicpoffs/archive/refs/tags/v1.1.6.tar.gz
+	sha256sums = SKIP
+
+pkgname = rpgmaker-linux-bin
