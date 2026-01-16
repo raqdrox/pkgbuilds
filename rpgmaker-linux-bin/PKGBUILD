@@ -1,0 +1,49 @@
+# Maintainer: Karan Kaul <frostbitekarzon+arch@gmail.com>
+
+pkgname=rpgmaker-linux-bin
+pkgver=1.1.6
+pkgrel=1
+pkgdesc="RPG Maker MV/MZ Linux runtime using cicpoffs mount (binary release)"
+arch=('x86_64' 'aarch64' 'armv7h')
+url="https://github.com/bakustarver/rpgmakermlinux-cicpoffs"
+license=('custom')
+depends=('bash' 'fuse2')
+conflicts=('rpgmaker-linux-git')
+provides=('rpgmaker-linux')
+
+source=(
+  "https://github.com/bakustarver/rpgmakermlinux-cicpoffs/archive/refs/tags/v${pkgver}.tar.gz"
+)
+sha256sums=('SKIP')
+
+package() {
+  cd "$srcdir/rpgmakermlinux-cicpoffs-${pkgver}"
+
+  install -d "$pkgdir/usr/lib/rpgmaker-linux"
+  install -d "$pkgdir/usr/bin"
+  install -d "$pkgdir/usr/share/applications"
+  install -d "$pkgdir/usr/share/licenses/$pkgname"
+
+  cp -r nwjs Kawariki-patches mkxp-z \
+    "$pkgdir/usr/lib/rpgmaker-linux/"
+
+  install -Dm755 /dev/stdin \
+    "$pkgdir/usr/bin/rpgmaker-linux" <<'EOF'
+#!/bin/bash
+export RPGMAKER_LINUX_PATH="/usr/lib/rpgmaker-linux"
+exec "/usr/lib/rpgmaker-linux/nwjs/packagefiles/nwjsstart-cicpoffs.sh" "$@"
+EOF
+
+  install -Dm644 /dev/stdin \
+    "$pkgdir/usr/share/applications/rpgmaker-linux.desktop" <<'EOF'
+[Desktop Entry]
+Name=RPG Maker MV/MZ (cicpoffs mount)
+Comment=Run RPG Maker MV/MZ games natively on Linux
+Exec=rpgmaker-linux %u
+Type=Application
+Categories=Game;
+EOF
+
+  install -Dm644 LICENSE \
+    "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
