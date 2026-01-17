@@ -3,6 +3,12 @@
 
 All notable changes to this repository are documented in this file.
 
+## 2026-01-17
+
+### Fixed
+- Executable permission fixes for `rpgmaker-linux-bin` and `rpgmaker-linux-steam` 
+
+
 ## 2026-01-16
 
 ### Added

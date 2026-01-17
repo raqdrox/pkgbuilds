@@ -9,6 +9,7 @@ url="https://github.com/bakustarver/rpgmakermlinux-cicpoffs"
 license=('custom')
 depends=('rpgmaker-linux')
 optdepends=('steam: required to use this compatibility tool')
+provides=('steam-compatibility-tool')
 
 source=(
   "https://github.com/bakustarver/rpgmakermlinux-cicpoffs/archive/refs/tags/v${pkgver}.tar.gz"
@@ -23,4 +24,8 @@ package() {
   cp -r \
     nwjs/packagefiles/rpgmaker-linux-steam-wrapper/* \
     "$pkgdir/usr/share/steam/compatibilitytools.d/rpgmaker-linux/"
+
+  # Ensure Steam can execute the tool
+  find "$pkgdir/usr/share/steam/compatibilitytools.d/rpgmaker-linux" \
+    -type f -name '*.sh' -exec chmod 755 {} \;
 }
